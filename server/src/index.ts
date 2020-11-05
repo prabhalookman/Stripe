@@ -1,4 +1,3 @@
-
 /*
 import "reflect-metadata";
 import {createConnection} from "typeorm";
@@ -25,18 +24,36 @@ createConnection().then(async connection => {
 import { createConnection } from 'typeorm';
 import {ApolloServer} from 'apollo-server-express';
 import * as express from 'express';
+import * as session from 'express-session';
 import { typeDefs } from './typeDefs';
 import { resolvers } from './resolvers';
+
+
+//     Now inside of my resolver, I want to be able to add a cookie for that user 
+// so i can do that by accessing now that we added the session here, on the request 
+// object there is a session so we can get access to that in our context
 
 const startServer = async () => {    
     const server = new ApolloServer({
         typeDefs,
-        resolvers
-    })
+        resolvers,
+        context: ( { req } : any)=>({ req })
+    });
 
     await createConnection();
     
     const app = express();
+
+    //When i started this session or when we add the session to the middleware here.
+    //We can have it store the data in different places. Right now we're just storing it in memory 
+    //but we can have the store to Redis or a database or whatever 
+    //but the it's in memory what that means is as soon as i turn off my server it's gonna forget all the past sessions.
+
+    app.use(session({
+        secret:"abc",
+        resave: false,
+        saveUninitialized: false
+    }))
     
     server.applyMiddleware({app});
     

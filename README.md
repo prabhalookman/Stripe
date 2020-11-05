@@ -48,3 +48,14 @@ createdb stripe
 yarn start
 
 https://github.com/benawad/graphql-typescript-stripe-example/tree/3_stripe_create_customer
+
+//Normal Start : 
+"scripts": {
+      "start": "ts-node src/index.ts"
+   }
+
+
+//Nodemon Start
+"scripts": {
+    "start": "nodemon --exec ts-node src/index.ts"
+  }
