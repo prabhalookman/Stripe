@@ -8,8 +8,6 @@ export const resolvers : IResolvers = {
             return 'Hi'
         },
         me: (_, __, {req})=>{
-            console.log("Session : ", req.session)
-            console.log("SessionId : ", req.SessionId)
 
             if(!req.session.userId){
                 return null;
@@ -40,9 +38,12 @@ export const resolvers : IResolvers = {
             if(!valid){
                 return null;
             }
-
+            
+            //How i'm gonna know that the user is who they are ? is we're gonna store a cookie on them and in our server we're gonna store the user ID on our server.
             req.session.userId = user.id;
-            console.log("Req Session Id : ", req.session.userId)
+
+            //When i set the user ID right here a request session or express-session knows to add a cookie to the user. 
+            //So now a cookie gonna get sent whenever we do login .
 
             return user;
         }
