@@ -1,8 +1,8 @@
 # Server
-** npm install typeorm -g   **
+**npm install typeorm -g**
 > typeorm init --name server --database postgres  
 
-**yarn  **
+**yarn**
 > yarn upgrade-interactive --latest  
 
 // Postgres - DB  
@@ -31,9 +31,9 @@ dropdb stripe
 createdb stripe  
 yarn start  
 
-https://github.com/benawad/graphql-typescript-stripe-example/tree/3_stripe_create_customer  
+[3_stripe_create_customer](https://github.com/benawad/graphql-typescript-stripe-example/tree/3_stripe_create_customer)
 
-//Normal Start : 
+Normal Start : 
 "scripts": {
       "start": "ts-node src/index.ts"
    }  
@@ -60,27 +60,27 @@ Install ts packages inside "Web" : yarn add -D @types/react-router-dom apollo @t
 npm install -d nodemon  
 ```
 
-** yarn upgrade @types/react@latest **
+**yarn upgrade @types/react@latest**
 > https://stackoverflow.com/questions/58180170/type-xxx-is-missing-the-following-properties-from-type-elementclass-context
 
-** npm install tslib -s **
+**npm install tslib -s**
 > https://www.codegrepper.com/code-examples/css/This+syntax+requires+an+imported+helper+but+module+%27tslib%27+cannot+be+found.
 
-** npm install --save-dev @types/react-router **
+**npm install --save-dev @types/react-router**
 > https://stackoverflow.com/questions/44250465/react-router-typescript-type-error
 > https://www.pluralsight.com/guides/react-router-typescript
 
-** npm install --save @types/react **
+**npm install --save @types/react**
 > https://www.npmjs.com/package/@types/react
 
-** npm install apollo-boost **
+**npm install apollo-boost**
 > https://snyk.io/advisor/npm-package/apollo-boost
 
-** npm install apollo-client apollo-cache-inmemory apollo-link-http react-apollo graphql-tag graphql --save **
+**npm install apollo-client apollo-cache-inmemory apollo-link-http react-apollo graphql-tag graphql --save**
 
-** Run npm list graphql - Then, check the highest version you found graphql. **
+**Run npm list graphql - Then, check the highest version you found graphql.**
 
-## Error  :
+## Error  1 :
 E:\Prabha\NEW_HMISSERVER\Stripe\web>yarn schema:download
 yarn run v1.22.4
 $ apollo schema:download --endpoint=http://localhost:4000/graphql
@@ -128,12 +128,12 @@ When u get Peer Dependency Error you need to install those packages
 E:\Prabha\NEW_HMISSERVER\Stripe\web>npm install apollo apollo-language-server graphql
 https://stackoverflow.com/questions/35738346/how-do-i-fix-the-npm-unmet-peer-dependency-warning
 
-## Execute  :
+## Execute  2 :
 1. yarn schema:download
 2. yarn codegen:generate
 
 Old : "codegen:generate": "apollo codegen:generate --queries=./src/**/*.tsx --schema=./schema.json --outputFlat --target=typescript ./src/schemaTypes.ts",
-## Error : 
+## Error 3 : 
 E:\Prabha\NEW_HMISSERVER\Stripe\web>yarn codegen:generate
 yarn run v1.22.4
 $ apollo codegen:generate --queries=./src/**/*.tsx --schema=./schema.json --outputFlat --target=typescript ./src/schemaTypes.ts
@@ -165,7 +165,7 @@ https://github.com/apollographql/apollo-tooling/issues/678
 https://github.com/benawad/monorepo-boilerplate/issues/8
 
 ---------------------
-
+```
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
   credentials: "include"
@@ -175,10 +175,33 @@ cors: {
     credentials:true,
     origin: "http://localhost:3000"
 }
-
+```
 # To Run Appliation :
 1. cd server
   - yarn start
 2. cd web
   - yarn gen:types
-3. Browser http://localhost:3000/register(or login )
+3. cd web
+  - yarn start
+4. [Browser](http://localhost:3000/register) http://localhost:3000/login
+---------------------
+# Stripe - CLIENT
+[react-stripe-checkout](https://github.com/azmenak/react-stripe-checkout)
+**Installation on web**
+npm install react-stripe-checkout
+
+StripeCheckout going to grab the users credit card and then when it's done sending that to stripe server this callback gets called and gives us a token that we can do stuff with
+
+we have some IDS and Card details. we have to care here about token - this token is what we're gonaa send this server and we can use this token to tie the user onto their credit card and then charge them first subscription
+
+We need to set up on the server to be able to receive token and do something with it 
+
+# Stripe - SERVER 
+First we need to set up stripe node , below is the sdk that we're gonna use , we have to install
+-npm install stripe --save
+-yarn add -D @types/stripe
+
+**Add .env**
+-yarn add dotenv
+
+[Server-stripe-node](https://github.com/stripe/stripe-node)
