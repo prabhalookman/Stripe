@@ -3,14 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
+    "apollo": "^2.31.1",
     "apollo-boost": "^0.4.9",
+    "apollo-client": "^2.6.10",
+    "apollo-language-server": "^1.24.1",
     "graphql": "^15.4.0",
     "nodemon": "^2.0.6",
     "react": "^17.0.1",
@@ -18,6 +14,7 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "tslib": "^2.0.3",
     "typescript": "^4.0.3",
     "web-vitals": "^0.2.4"
   },
@@ -25,7 +22,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "schema:download": "apollo schema:download --endpoint=http://localhost:4000/graphql",    
+    "codegen:generate": "apollo codegen:generate --queries=./src/**/*.tsx --localSchemaFile=./schema.json --outputFlat --target=typescript ./src/schemaTypes.ts",
+    "gen:types": "npm run schema:download && npm run codegen:generate"  
   },
   "eslintConfig": {
     "extends": [
@@ -46,8 +46,17 @@
     ]
   },
   "devDependencies": {
-    "@types/graphql": "^14.5.0",
-    "@types/react-router-dom": "^5.1.6",
-    "apollo": "^2.31.0"
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router": "^5.1.8",
+    "@types/react-router-dom": "^5.1.6"
+  },
+  "resolutions": {
+    "graphql": "^15.0.0"
   }
 }

@@ -14,7 +14,7 @@ export const resolvers : IResolvers = {
             }
             return MyUser.findOne(req.session.userId)                        
         }
-
+        
     },
     Mutation:{
         register: async (_, {email, password}) => {
@@ -44,6 +44,7 @@ export const resolvers : IResolvers = {
 
             //When i set the user ID right here a request session or express-session knows to add a cookie to the user. 
             //So now a cookie gonna get sent whenever we do login .
+            console.log("user Info : ", user);
 
             return user;
         }
