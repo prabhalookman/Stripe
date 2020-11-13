@@ -1,23 +1,41 @@
-import { Console } from 'console'
-import React, { Component } from 'react'
-import StripeCheckout from 'react-stripe-checkout'
+import * as React from "react";
+import StripeCheckout from "react-stripe-checkout";
+import { Mutation } from "react-apollo";
+import { gql } from "apollo-boost";
+import { CreateSubscriptionMutation,CreateSubscriptionMutationVariables} from "../../schemaTypes";
 
-export default class SubscribeUser extends React.PureComponent {
-    onToken = (token) => {
-        console.log('process.env.REACT_APP_STRIPE_PUBLISHABLE : ', process.env.REACT_APP_STRIPE_PUBLISHABLE)
-        console.log("My Token : ", token)
+const createSubscriptionMutation = gql`
+  mutation CreateSubscriptionMutation($source: String!) {
+    createSubscription(source: $source) {
+        id,
+        email      
     }
-
+  }
+`;
+//...UserInfo
+export default class SubscribeUser extends React.PureComponent {
     render() {
         return (
-            // going to grab the users credit card and then when it's done sending that to stripe server this callback gets called and gives us a token that we can do stuff with
-            <StripeCheckout
-                token={this.onToken}
-                stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE!}
-            />
-            // we have some IDS and Card details. we have to care here about token - this token is what we're gonaa send this server and we can use this token to tie the user onto their credit card and then charge them first subscription
+            <Mutation<CreateSubscriptionMutation, CreateSubscriptionMutationVariables>mutation={createSubscriptionMutation}>
+                {mutate => (
 
-            // We need to set up on the server to be able to receive token and do something with it
+                    // going to grab the users credit card and then when it's done sending that to stripe server this callback gets called and gives us a token that we can do stuff with
+                    <StripeCheckout
+                        token={async token => {
+                            const response = await mutate({
+                                variables: { source: token.id }
+                            });
+                            console.log("response : ",  response);
+                            console.log("token : " , token)
+                        }}
+                        stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE!}
+                        amount={1000}
+                    />
+                    // we have some IDS and Card details. we have to care here about token - this token is what we're gonaa send this server and we can use this token to tie the user onto their credit card and then charge them first subscription
+
+                    // We need to set up on the server to be able to receive token and do something with it
+                )}
+            </Mutation>
         )
     }
 }

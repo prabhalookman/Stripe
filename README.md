@@ -43,6 +43,24 @@ Normal Start :
 "scripts": {
     "start": "nodemon --exec ts-node src/index.ts"
   }  
+
+# Error1 : 
+
+Type 'typeof import("stripe")' has no construct signatures
+
+# Solutions : 
+Install the types
+
+npm install --dev @types/stripe-node
+or
+yarn add @types/stripe-node -D
+Import the package and use the exported constructor
+
+import * as Stripe from 'stripe';
+const stripe = new Stripe(stripeKey);
+
+https://github.com/stripe/stripe-node/issues/296
+
 ------------------------------------------------------------------------------------------------------
 # Client
 ```
@@ -204,4 +222,7 @@ First we need to set up stripe node , below is the sdk that we're gonna use , we
 **Add .env**
 -yarn add dotenv
 
-[Server-stripe-node](https://github.com/stripe/stripe-node)
+[x][Server-stripe-node](https://github.com/stripe/stripe-node)
+[][react-stripe-elements](https://github.com/stripe/react-stripe-elements)
+[][react-stripe-checkout](https://github.com/azmenak/react-stripe-checkout)
+[][Stripe-API](https://stripe.com/docs/api)

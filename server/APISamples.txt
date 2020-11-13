@@ -1,0 +1,27 @@
+{
+  hello
+}
+
+mutation {
+  register(email: "kprabha26@gmail.com", password: "125")
+}
+
+mutation {
+  deleteCustomer(customerID: "5f9fbd4f00bc0d24189e6d96") {
+    status
+  }
+}
+
+mutation {
+  login(email: "kprabha26@gmail.com", password: "125") {
+    id
+    email
+  }
+}
+
+{
+  me{
+    id
+    email
+  }
+}

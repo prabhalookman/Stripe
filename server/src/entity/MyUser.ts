@@ -9,7 +9,17 @@ export class MyUser extends BaseEntity {
     @Column("text")
     email: string;
 
+    @Column("text", {nullable: true})
+    stipeId: string;
+
+    @Column("text", {default: 'free-trail'})
+    type: string;
+
     @Column("text")
     password: string;
 
 }
+
+// When we create our customer and the stripe it's going to give us an ID and we want to that in our own database
+
+//type going to represent is whethere the user has paid or not for our service or our website 
