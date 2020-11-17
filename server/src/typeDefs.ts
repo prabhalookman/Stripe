@@ -3,7 +3,8 @@ import { gql } from 'apollo-server-express';
 export const typeDefs = gql`
 type User {
     id: ID!
-    email: String!
+    email: String!,
+    type: String
 }
 
 type Query {
@@ -15,6 +16,5 @@ type Mutation {
     register(email: String!, password: String!): Boolean!
     login(email:String!, password: String!): User
     createSubscription(source: String!): User
-}
-`
+}`
 //createSubscription all i really need to take is that token ID or what stripe calls it is the "source"

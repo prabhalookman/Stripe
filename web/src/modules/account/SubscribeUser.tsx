@@ -4,7 +4,7 @@ import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
 import { CreateSubscriptionMutation,CreateSubscriptionMutationVariables} from "../../schemaTypes";
 
-const createSubscriptionMutation = gql`
+const createSubMutation = gql`
   mutation CreateSubscriptionMutation($source: String!) {
     createSubscription(source: $source) {
         id,
@@ -16,7 +16,7 @@ const createSubscriptionMutation = gql`
 export default class SubscribeUser extends React.PureComponent {
     render() {
         return (
-            <Mutation<CreateSubscriptionMutation, CreateSubscriptionMutationVariables>mutation={createSubscriptionMutation}>
+            <Mutation<CreateSubscriptionMutation, CreateSubscriptionMutationVariables> mutation={createSubMutation}>
                 {mutate => (
 
                     // going to grab the users credit card and then when it's done sending that to stripe server this callback gets called and gives us a token that we can do stuff with

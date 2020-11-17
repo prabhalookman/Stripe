@@ -65,7 +65,7 @@ export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
                     variables: this.state
                   });
                   console.log("Login Submit : ",response);
-                  this.props.history.push("/me");
+                  this.props.history.push("/account");
                 }}
               >
                 ogin
