@@ -68,7 +68,7 @@ export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
                   this.props.history.push("/account");
                 }}
               >
-                ogin
+                Login
               </button>
             </div>
           </div>

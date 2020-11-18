@@ -4,7 +4,7 @@ import { gql } from "apollo-boost";
 import { Redirect } from "react-router-dom";
 
 import { meQuery } from "../../schemaTypes";
-//import SubscribeUser from "./SubscribeUser";
+import SubscribeUser from "./SubscribeUser";
 
 const meQuryVar = gql`
   query meQuery {
@@ -18,6 +18,7 @@ const meQuryVar = gql`
 export class Account extends React.PureComponent {
   render() {
     return (
+      //fetchPolicy="network-only" - Catching yours
       <Query<meQuery> fetchPolicy="network-only" query={meQuryVar}>
         {({ data, loading }) => {
           if (loading) {
@@ -32,9 +33,11 @@ export class Account extends React.PureComponent {
             return <Redirect to="/login" />;
           }
 
-        //   if (data.me.type === "free-trial") {
-        //     return <SubscribeUser />;
-        //   }
+          console.log("data : ", data)
+
+          if (data.me.type === "free-trail") {
+            return <SubscribeUser />;
+          }
 
           // if (data.me.type === 'paid')
         //   return <Redirect to="/paid-users" />;

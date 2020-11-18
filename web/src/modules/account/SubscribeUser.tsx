@@ -8,7 +8,8 @@ const createSubMutation = gql`
   mutation CreateSubscriptionMutation($source: String!) {
     createSubscription(source: $source) {
         id,
-        email      
+        email,
+        type
     }
   }
 `;
@@ -22,9 +23,7 @@ export default class SubscribeUser extends React.PureComponent {
                     // going to grab the users credit card and then when it's done sending that to stripe server this callback gets called and gives us a token that we can do stuff with
                     <StripeCheckout
                         token={async token => {
-                            const response = await mutate({
-                                variables: { source: token.id }
-                            });
+                            const response = await mutate({ variables: { source: token.id } });
                             console.log("response : ",  response);
                             console.log("token : " , token)
                         }}
