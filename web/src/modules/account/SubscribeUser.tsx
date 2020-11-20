@@ -24,8 +24,8 @@ export default class SubscribeUser extends React.PureComponent {
                     <StripeCheckout
                         token={async token => {
                             const response = await mutate({ variables: { source: token.id } });
-                            console.log("response : ",  response);
-                            console.log("token : " , token)
+                            console.log("Supscibe Response : ",  response);
+                            console.log("Supscibe Token : " , token)
                         }}
                         stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE!}
                         amount={1000}

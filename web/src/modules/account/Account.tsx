@@ -5,43 +5,36 @@ import { Redirect } from "react-router-dom";
 
 import { meQuery } from "../../schemaTypes";
 import SubscribeUser from "./SubscribeUser";
-
-const meQuryVar = gql`
-  query meQuery {
-    me {
-      id
-      email
-      type
-    }
-  }`;
+import  meQuryVar  from '../../graphql/queries/me';
 
 export class Account extends React.PureComponent {
+  
   render() {
     return (
       //fetchPolicy="network-only" - Catching yours
-      <Query<meQuery> fetchPolicy="network-only" query={meQuryVar}>
+      <Query<meQuery>  query={meQuryVar}>
         {({ data, loading }) => {
+          console.log("Account Data : ", data)
+
           if (loading) {
             return null;
           }
 
           if (!data) {
-            return <div>data is undefined</div>;
+            return <div>Data Is Undefined</div>;
           }
 
           if (!data.me) {
             return <Redirect to="/login" />;
           }
 
-          console.log("data : ", data)
-
           if (data.me.type === "free-trail") {
             return <SubscribeUser />;
           }
 
-          // if (data.me.type === 'paid')
-        //   return <Redirect to="/paid-users" />;
-        return <div>Thanks For Buying Our Product</div>
+          //if (data.me.type === 'paid'){ }
+          return <Redirect to="/paid-users" />;
+        // return <div>Thanks For Buying Our Product</div>
         }}
       </Query>
     );

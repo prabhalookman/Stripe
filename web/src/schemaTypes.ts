@@ -31,6 +31,7 @@ export interface CreateSubscriptionMutation_createSubscription {
   __typename: "User";
   id: string;
   email: string;
+  type: string | null;
 }
 
 export interface CreateSubscriptionMutation {
@@ -54,6 +55,7 @@ export interface LoginMutation_login {
   __typename: "User";
   id: string;
   email: string;
+  type: string | null;
 }
 
 export interface LoginMutation {

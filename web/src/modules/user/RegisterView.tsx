@@ -36,6 +36,7 @@ export class RegisterView extends React.PureComponent<RouteComponentProps<{}>> {
               justifyContent: "center"
             }}
           >
+            <h2>Register</h2>
             <div>
               <input
                 type="text"

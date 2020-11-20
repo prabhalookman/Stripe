@@ -302,6 +302,13 @@
     "@types/mime" "*"
     "@types/node" "*"
 
+"@types/stripe-node@^4.7.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@types/stripe-node/-/stripe-node-4.7.1.tgz#cb11d65e73136509801582bd0daac50b794cfdc1"
+  integrity sha512-ueF+sxvqoVySbMQKJZUwSvT9pnm3tShKd0PvzW5lI902nvUtBoSGJsyZaX5XCKh5KhSpcssAagSW0vFdjGgH8g==
+  dependencies:
+    "@types/node" "*"
+
 "@types/stripe@^7.13.25":
   version "7.13.25"
   resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-7.13.25.tgz#bf27c8511fc80047f9d8f0b12b0f67cfd75434cf"

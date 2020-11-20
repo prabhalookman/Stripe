@@ -222,7 +222,8 @@ First we need to set up stripe node , below is the sdk that we're gonna use , we
 **Add .env**
 -yarn add dotenv
 
-[x][Server-stripe-node](https://github.com/stripe/stripe-node)
-[][react-stripe-elements](https://github.com/stripe/react-stripe-elements)
-[][react-stripe-checkout](https://github.com/azmenak/react-stripe-checkout)
-[][Stripe-API](https://stripe.com/docs/api)
+[x] [Server-stripe-node](https://github.com/stripe/stripe-node)  
+[] [react-stripe-elements](https://github.com/stripe/react-stripe-elements)  
+[] [react-stripe-checkout](https://github.com/azmenak/react-stripe-checkout)  
+[] [Stripe-API](https://stripe.com/docs/api)  
+[] [Web-Paid] (https://github.com/benawad/graphql-typescript-stripe-example/tree/4_conditional_render/web)  

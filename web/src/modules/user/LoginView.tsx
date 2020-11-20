@@ -2,6 +2,8 @@ import * as React from "react";
 import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
 import { RouteComponentProps } from "react-router-dom";
+import  meQuery from "../../graphql/queries/me";
+
 
 import { LoginMutationVariables, LoginMutation } from "../../schemaTypes";
 
@@ -10,6 +12,7 @@ const loginMutDef = gql`
     login(email: $email, password: $password){
         id
         email
+        type
     }
   }
 `;
@@ -29,9 +32,25 @@ export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
 
   render() {
     const { password, email } = this.state;
-    return (
-      <Mutation<LoginMutation, LoginMutationVariables> mutation={loginMutDef} >
-        {mutate => (
+    return (      
+      <Mutation<LoginMutation, LoginMutationVariables> 
+      // After the Login we need to update the me to replace the null
+      update = {
+        (cache, {data } ) => { 
+          console.log("Login Cache Data : ", data)
+        
+        if(!data || !data.login){
+          return;
+        }
+        cache.writeQuery({
+          query: meQuery,
+          data: { me: data.login }
+        });
+        }
+      }//main
+      mutation={loginMutDef} >
+        {
+        (mutate, {client}) => (
           <div
             style={{
               display: "flex",
@@ -40,6 +59,7 @@ export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
               justifyContent: "center"
             }}
           >
+            <h2>Login</h2>
             <div>
               <input
                 type="text"
@@ -61,6 +81,8 @@ export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
             <div>
               <button
                 onClick={async () => {
+                  //optional reset cache
+                  //await client?.resetStore()
                   const response = await mutate({
                     variables: this.state
                   });
@@ -72,7 +94,8 @@ export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
               </button>
             </div>
           </div>
-        )}
+        )
+        }         
       </Mutation>
     );
   }
