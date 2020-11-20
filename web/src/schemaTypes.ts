@@ -12,10 +12,36 @@ export interface meQuery_me {
   id: string;
   email: string;
   type: string | null;
+  ccLast4: string | null;
 }
 
 export interface meQuery {
   me: meQuery_me | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ChangeCreditCardMutation
+// ====================================================
+
+export interface ChangeCreditCardMutation_changeCreditCard {
+  __typename: "User";
+  id: string;
+  email: string;
+  type: string | null;
+  ccLast4: string | null;
+}
+
+export interface ChangeCreditCardMutation {
+  changeCreditCard: ChangeCreditCardMutation_changeCreditCard | null;
+}
+
+export interface ChangeCreditCardMutationVariables {
+  source: string;
 }
 
 /* tslint:disable */
@@ -32,6 +58,7 @@ export interface CreateSubscriptionMutation_createSubscription {
   id: string;
   email: string;
   type: string | null;
+  ccLast4: string | null;
 }
 
 export interface CreateSubscriptionMutation {
@@ -83,6 +110,23 @@ export interface RegisterMutation {
 export interface RegisterMutationVariables {
   email: string;
   password: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: UserInfo
+// ====================================================
+
+export interface UserInfo {
+  __typename: "User";
+  id: string;
+  email: string;
+  type: string | null;
+  ccLast4: string | null;
 }
 
 /* tslint:disable */

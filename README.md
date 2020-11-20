@@ -222,8 +222,19 @@ First we need to set up stripe node , below is the sdk that we're gonna use , we
 **Add .env**
 -yarn add dotenv
 
+## Note : 
+
+Old ->  "codegen:generate": "apollo codegen:generate --queries=./src/**/*.tsx --localSchemaFile=./schema.json --outputFlat --target=typescript ./src/schemaTypes.ts"
+
+New -> "codegen:generate": "apollo codegen:generate --queries='./src/**/*.{ts,tsx}' --localSchemaFile=./schema.json --outputFlat --target=typescript ./src/schemaTypes.ts"
+
+if you want to affect both .ts and .tsx extensions, use the following syntax : --queries='./src/**/*.{ts,tsx}' (note also the additional single quotes around the path, otherwise it doesn't work)
+
 [x] [Server-stripe-node](https://github.com/stripe/stripe-node)  
 [] [react-stripe-elements](https://github.com/stripe/react-stripe-elements)  
 [] [react-stripe-checkout](https://github.com/azmenak/react-stripe-checkout)  
 [] [Stripe-API](https://stripe.com/docs/api)  
 [] [Web-Paid] (https://github.com/benawad/graphql-typescript-stripe-example/tree/4_conditional_render/web)  
+
+[Saving and reusing cards (SCA) by Stripe Developers] (https://www.youtube.com/watch?v=95qSebQrm5E)
+[Stripe with React and node crash course] (https://www.youtube.com/watch?v=lbEFSP1WAv0)

@@ -3,15 +3,15 @@ import StripeCheckout from "react-stripe-checkout";
 import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
 import { CreateSubscriptionMutation,CreateSubscriptionMutationVariables} from "../../schemaTypes";
+import { userFragment } from "../../graphql/fragments/userFragment"
 
 const createSubMutation = gql`
   mutation CreateSubscriptionMutation($source: String!) {
     createSubscription(source: $source) {
-        id,
-        email,
-        type
+        ...UserInfo
     }
   }
+  ${userFragment}
 `;
 //...UserInfo
 export default class SubscribeUser extends React.PureComponent {

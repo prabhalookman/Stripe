@@ -1,13 +1,15 @@
 import { gql } from 'apollo-boost';
+import { userFragment } from "../fragments/userFragment";
+
 
 const meQuryVar = gql`
   query meQuery {
     me {
-      id
-      email
-      type
+      ...UserInfo
     }
+    ${userFragment}
 }`;
 
+//id, email, type
 
 export default meQuryVar

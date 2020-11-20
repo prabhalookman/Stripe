@@ -10,11 +10,14 @@ export class MyUser extends BaseEntity {
     email: string;
 
     @Column("text", {nullable: true})
-    stipeId: string;
+    stripeId : string;
 
     @Column("text", {default: 'free-trail'})
     type: string;
 
+    @Column("text", { nullable: true })
+    ccLast4: string;
+    
     @Column("text")
     password: string;
 

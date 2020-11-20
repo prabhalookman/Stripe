@@ -48,7 +48,7 @@ export const resolvers: IResolvers = {
             console.log("user Info : ", user);
 
             return user;
-        }, createSubscription: async (_, { source }, { req }) => {
+        }, createSubscription: async (_, { source, ccLast4 }, { req }) => {
             //source : Token
             if (!req.session || !req.session.userId) {
                 throw new Error("not authenticated");
@@ -60,7 +60,7 @@ export const resolvers: IResolvers = {
                 throw new Error()
             }
 
-            let stripeId = user.stipeId;
+            let stripeId = user.stripeId;
 
             if (!stripeId) {
                 const customer = await stripe.customers.create({
@@ -75,12 +75,33 @@ export const resolvers: IResolvers = {
                 //await stripe.subscriptions.create({customer: stripeId,items: [{plan: process.env.PLAN!}]});
             }
 
-            user.stipeId = stripeId;
+            user.stripeId = stripeId;
             user.type = "paid";
+            user.ccLast4 = ccLast4;
 
             await user.save();
             return user;
+        }, changeCreditCard: async (_, { source, ccLast4 }, { req }) => {
+            //source : Token
+            if (!req.session || !req.session.userId) {
+                throw new Error("not authenticated");
+            }
+
+            const user = await MyUser.findOne(req.session.userId);
+
+            if (!user || !user.stripeId || user.type !== "paid") {
+                throw new Error();
+              }
+            
+            await stripe.customers.update(user.stripeId, { source });
+
+            user.ccLast4 = ccLast4;
+            await user.save();
+
+            return user;
+
         }
+    
     }
 }
 
