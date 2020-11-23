@@ -6,8 +6,8 @@ import { ChangeCreditCardMutation,ChangeCreditCardMutationVariables} from "../..
 import { userFragment } from "../../graphql/fragments/userFragment"
 
 const changeCardMutDef = gql`
-    mutation ChangeCreditCardMutation($source: String!){
-        changeCreditCard(source: $source){
+    mutation ChangeCreditCardMutation($source: String!, $ccLast4: String!){
+        changeCreditCard(source: $source, ccLast4: $ccLast4) {
             ...UserInfo
         }
     }
@@ -24,9 +24,9 @@ export default class ChangeCreditCard extends React.PureComponent {
                     (mutate)=>(
                         <StripeCheckout
                         token={async token => {
-                            const response = await mutate({ variables: { source: token.id } });
-                            console.log("Supscibe Response : ",  response);
-                            console.log("Supscibe Token : " , token)
+                            const response = await mutate({ variables: { source: token.id, ccLast4: token.card.last4 } });
+                            console.log("Change Credit Card Response : ",  response);
+                            console.log("Change Credit Card Token : " , token)
                         }}
                         stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE!}
                         amount={1000}

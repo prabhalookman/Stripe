@@ -6,8 +6,8 @@ import { CreateSubscriptionMutation,CreateSubscriptionMutationVariables} from ".
 import { userFragment } from "../../graphql/fragments/userFragment"
 
 const createSubMutation = gql`
-  mutation CreateSubscriptionMutation($source: String!) {
-    createSubscription(source: $source) {
+  mutation CreateSubscriptionMutation($source: String!, $ccLast4: String!) {
+    createSubscription(source: $source, ccLast4: $ccLast4) {
         ...UserInfo
     }
   }
@@ -23,7 +23,7 @@ export default class SubscribeUser extends React.PureComponent {
                     // going to grab the users credit card and then when it's done sending that to stripe server this callback gets called and gives us a token that we can do stuff with
                     <StripeCheckout
                         token={async token => {
-                            const response = await mutate({ variables: { source: token.id } });
+                            const response = await mutate({ variables: { source: token.id, ccLast4: token.card.last4 } });
                             console.log("Supscibe Response : ",  response);
                             console.log("Supscibe Token : " , token)
                         }}

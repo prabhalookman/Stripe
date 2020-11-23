@@ -6,9 +6,10 @@ const meQuryVar = gql`
   query meQuery {
     me {
       ...UserInfo
+      }
     }
     ${userFragment}
-}`;
+`;
 
 //id, email, type
 

@@ -42,6 +42,7 @@ export interface ChangeCreditCardMutation {
 
 export interface ChangeCreditCardMutationVariables {
   source: string;
+  ccLast4: string;
 }
 
 /* tslint:disable */
@@ -67,6 +68,7 @@ export interface CreateSubscriptionMutation {
 
 export interface CreateSubscriptionMutationVariables {
   source: string;
+  ccLast4: string;
 }
 
 /* tslint:disable */

@@ -24,7 +24,7 @@ export class Routes extends React.PureComponent {
                   <Route path="/account" component={Account} />
                   <Route path="/SubscribeUser" component={SubscribeUser} />
                   <Route path="/paid-users" component={PaidUsers} />
-                  <Route path="/createProd" component={CreateProduct} />
+                  <Route path="/createProd" component={CreateProduct} />                  
                   <Route exact={true} path="/" render={() => <div style={{ textAlign: "center", fontSize: "24px", fontWeight:"bold" }}>Home Page</div>} />
                 </div>
               </React.Fragment>)}
