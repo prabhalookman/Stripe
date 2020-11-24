@@ -46,42 +46,48 @@ export const resolvers: IResolvers = {
             //When i set the user ID right here a request session or express-session knows to add a cookie to the user. 
             //So now a cookie gonna get sent whenever we do login .
             console.log("user Info : ", user);
-
+            
             return user;
         }, createSubscription: async (_, { source, ccLast4 }, { req }) => {
-            //source : Token
             if (!req.session || !req.session.userId) {
-                throw new Error("not authenticated");
+              throw new Error("not authenticated");
             }
-
+      
             const user = await MyUser.findOne(req.session.userId);
-
+      
             if (!user) {
-                throw new Error()
+              throw new Error();
             }
-
+      
             let stripeId = user.stripeId;
-
+      
             if (!stripeId) {
-                const customer = await stripe.customers.create({
-                    email: user.email,
-                    source,
-                    plan: process.env.PLAN
-                });
-                stripeId = customer.id;
+              const customer = await stripe.customers.create({
+                email: user.email,
+                source,
+                plan: process.env.PLAN
+              });
+              stripeId = customer.id;
             } else {
-                // update customer
-                await stripe.customers.update(stripeId, { source });
-                //await stripe.subscriptions.create({customer: stripeId,items: [{plan: process.env.PLAN!}]});
-            }
-
+              // update customer
+              const cust = await stripe.customers.update(stripeId, { source });
+              console.log('cust : ', cust)
+              const subs = await stripe.subscriptions.create({ 
+                  customer: stripeId,
+                  items: [ 
+                      { plan: process.env.PLAN! } 
+                    ] 
+                });
+                console.log('subs : ', subs)
+            }            
+      
             user.stripeId = stripeId;
             user.type = "paid";
             user.ccLast4 = ccLast4;
-
             await user.save();
+      
             return user;
-        }, changeCreditCard: async (_, { source, ccLast4 }, { req }) => {
+          }, changeCreditCard: async (_, { source, ccLast4 }, { req }) => {
             //source : Token
             if (!req.session || !req.session.userId) {
                 throw new Error("not authenticated");
@@ -100,6 +106,39 @@ export const resolvers: IResolvers = {
 
             return user;
 
+        },cancelSubscription: async (_, __, { req }) => {
+            console.log("From Cancel  ");
+            if (!req.session || !req.session.userId) {
+                throw new Error("not authenticated");
+            }
+
+            const user = await MyUser.findOne(req.session.userId);
+
+            if (!user || !user.stripeId || user.type !== "paid") {
+                throw new Error();
+            }
+
+            const stripeCustomer = await stripe.customers.retrieve(user.stripeId);
+            console.log("Cancel : stripeCustomer - ", stripeCustomer)
+
+            const subscriptions = await stripe.subscriptions.list({ limit: 3 });
+
+              console.log("subscriptions List : ", subscriptions)
+            
+            const [subscription] = subscriptions.data;
+            await stripe.subscriptions.del(subscription.id);
+
+            const result = await stripe.customers.deleteCard(
+                user.stripeId,
+                stripeCustomer.default_source as string
+            );
+
+            console.log("result : ", result)
+
+            user.type = "free-trail";
+            await user.save();
+
+            return user;
         }
     
     }

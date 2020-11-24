@@ -1,12 +1,13 @@
 import * as React from "react";
 import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
 import { Redirect } from "react-router-dom";
 
 import { meQuery } from "../../schemaTypes";
 import SubscribeUser from "./SubscribeUser";
 import  meQuryVar  from '../../graphql/queries/me';
 import ChangeCreditCard from './ChangeCreditCard';
+import { CancelSubscription } from "./CancelSubscription";
+
 
 export class Account extends React.PureComponent {
   
@@ -37,6 +38,7 @@ export class Account extends React.PureComponent {
           return(<div>
             <div>Your Current Credit Card Last Digit : {data.me.ccLast4}</div>
             <ChangeCreditCard />
+            <CancelSubscription />
           </div>)
           //return <Redirect to="/paid-users" />;
         // return <div>Thanks For Buying Our Product</div>

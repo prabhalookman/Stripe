@@ -238,3 +238,33 @@ if you want to affect both .ts and .tsx extensions, use the following syntax : -
 
 [Saving and reusing cards (SCA) by Stripe Developers] (https://www.youtube.com/watch?v=95qSebQrm5E)
 [Stripe with React and node crash course] (https://www.youtube.com/watch?v=lbEFSP1WAv0)
+
+[To create a Product](https://stripe.com/docs/payments/checkout/client)
+
+[API](https://stripe.com/docs/api/products/create)
+https://stripe.com/docs/payments/checkout/client#create-products-and-prices
+https://stripe.com/docs/billing/subscriptions/overview
+https://stripe.com/docs
+[Subscription Flow Docs](https://stripe.com/docs/billing/subscriptions/overview)
+------------------------------------
+# Error : Argument of type '{ customer: string; items: { plan: string; }[]; }' is not assignable to parameter of type 'ISubscriptionCreationOptions stripe
+
+//Dev
+"typescript": "4.0.5",
+"@types/node": "^14.14.6",
+"@types/stripe": "^7.13.25",
+
+"@types/stripe-node": "^4.7.1", //Removed for avoid above error
+
+//Dependency
+"stripe": "^8.121.0"
+
+npm uninstall --save typescript
+npm uninstall --save @types/node @types/stripe @types/stripe-node
+npm uninstall --save stripe
+
+npm install --save-dev typescript@3.1.1 @types/node@^10.11.3 @types/stripe@^6.0.0
+npm install --save stripe@^6.12.1
+-------------------------
+yarn add styled-components@beta
+yarn add -D @types/styled-components

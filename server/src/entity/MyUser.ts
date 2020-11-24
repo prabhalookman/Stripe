@@ -21,6 +21,9 @@ export class MyUser extends BaseEntity {
     @Column("text")
     password: string;
 
+    @Column("text", { nullable: true })
+    default_source: string
+
 }
 
 // When we create our customer and the stripe it's going to give us an ID and we want to that in our own database

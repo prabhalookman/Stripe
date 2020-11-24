@@ -19,13 +19,11 @@ export default class SubscribeUser extends React.PureComponent {
         return (
             <Mutation<CreateSubscriptionMutation, CreateSubscriptionMutationVariables> mutation={createSubMutation}>
                 {mutate => (
-
                     // going to grab the users credit card and then when it's done sending that to stripe server this callback gets called and gives us a token that we can do stuff with
                     <StripeCheckout
                         token={async token => {
                             const response = await mutate({ variables: { source: token.id, ccLast4: token.card.last4 } });
                             console.log("Supscibe Response : ",  response);
-                            console.log("Supscibe Token : " , token)
                         }}
                         stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE!}
                         amount={1000}

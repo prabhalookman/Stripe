@@ -18,5 +18,6 @@ type Mutation {
     login(email:String!, password: String!): User
     createSubscription(source: String!, ccLast4: String): User
     changeCreditCard(source: String!, ccLast4: String): User
+    cancelSubscription: User
 }`
 //createSubscription all i really need to take is that token ID or what stripe calls it is the "source"
