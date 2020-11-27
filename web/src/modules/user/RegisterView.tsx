@@ -37,8 +37,8 @@ export class RegisterView extends React.PureComponent<RouteComponentProps<{}>> {
             }}
           >
             <h2>Register</h2>
-            <div>
-              <input
+            <div className="form-group">
+              <input className="form-control"
                 type="text"
                 name="email"
                 placeholder="email"
@@ -46,8 +46,8 @@ export class RegisterView extends React.PureComponent<RouteComponentProps<{}>> {
                 onChange={this.handleChange}
               />
             </div>
-            <div>
-              <input
+            <div className="form-group">
+              <input className="form-control"
                 type="password"
                 name="password"
                 placeholder="password"
@@ -56,7 +56,7 @@ export class RegisterView extends React.PureComponent<RouteComponentProps<{}>> {
               />
             </div>
             <div>
-              <button
+              <button className="btn btn-info"
                 onClick={async () => {
                   const response = await mutate({
                     variables: this.state
@@ -64,8 +64,7 @@ export class RegisterView extends React.PureComponent<RouteComponentProps<{}>> {
                   console.log("Register Submit : ",response);
                   this.props.history.push("/login");
                 }}
-              >
-                register
+              >Register
               </button>
             </div>
           </div>

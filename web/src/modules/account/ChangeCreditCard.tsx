@@ -31,7 +31,7 @@ export default class ChangeCreditCard extends React.PureComponent {
                         stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE!}
                         amount={1000}
                     >
-                        <button>Change Credit Card</button>
+                        <button className="btn btn-info" >Change Credit Card</button>
                         </StripeCheckout>
                         )
                 }

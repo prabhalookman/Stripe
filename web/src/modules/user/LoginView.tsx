@@ -60,8 +60,8 @@ export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
             }}
           >
             <h2>Login</h2>
-            <div>
-              <input
+            <div className="form-group">
+              <input className="form-control"
                 type="text"
                 name="email"
                 placeholder="email"
@@ -69,8 +69,8 @@ export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
                 onChange={this.handleChange}
               />
             </div>
-            <div>
-              <input
+            <div className="form-group">
+              <input className="form-control"
                 type="password"
                 name="password"
                 placeholder="password"
@@ -79,7 +79,7 @@ export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
               />
             </div>
             <div>
-              <button
+              <button className="btn btn-info"
                 onClick={async () => {
                   //optional reset cache
                   //await client?.resetStore()

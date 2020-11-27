@@ -1,55 +1,71 @@
-import React, { PureComponent } from 'react'
+import { RSA_NO_PADDING } from 'constants';
+import React, { Fragment, PureComponent } from 'react'
 import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom'
 import meQuryVar from '../graphql/queries/me';
 import { meQuery } from '../schemaTypes';
 
+
 export default class Header extends PureComponent {
     render() {
+        const btnStyle = {
+            color: "#FFF",
+            backgroundColor: "DodgerBlue",
+            padding: "10px",
+            margin:"5px 10px",
+            fontFamily: "Arial"
+          };
+          const titlestyle = {
+            color: "#000",
+            backgroundColor: "primary",
+            padding: "10px",
+            margin:"5px 10px",
+            fontFamily: "Arial"
+          };
+          const m_20 = {            
+            margin:"0px 0px 50px 0px"
+        };
+
         return (
-            <div style={{
-                height: 50,
-                width: "100%",
-                backgroundColor: "#fafafa",
-                display: "flex",
-                justifyContent: "space-around",
-                padding: 10
-            }}>
-                <Link to="/">
-                    <h2 style={{ position: "absolute", left: "25px" }}>Stripe Subscription</h2>
-                </Link>
+            <div>
+                <nav id="navbar-example2" className="navbar navbar-dark bg-dark" style={m_20} >
+                <Link to="/" className="nav-link btn btn-warning" style={titlestyle} >Stripe Payment</Link>
+                    <ul className="nav nav-pills">
+                        <Query<meQuery> query={meQuryVar}>
+                            {({ data, loading }) => {
+                                if (loading || !data) {
+                                    return null;
+                                }
 
-                {/*  */}
+                                if (!data.me) {
+                                    return (<>
+                                        <li className="nav-item">
+                                        <Link to="/login" className="nav-link" style={btnStyle}>Login</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link to="/register" className="nav-link" style={btnStyle}>Register</Link>
+                                        </li>
 
-                <Query<meQuery> query={meQuryVar}>
-                    {({ data, loading }) => {
-                        if (loading || !data) {
-                            return null;
-                        }
-                        
-                        if(!data.me){
-                            return (<div>
-                                <div>
-                                    <Link to="/login">Login</Link>
-                                </div>
-                                <div>
-                                    <Link to="/register">Register</Link>
-                                </div>                                
-                            </div>)
-                        }
-                        
-                        //User is logged in
-                        return (<div>
-                            <div>
-                                <Link to="/account">Account</Link>
-                            </div>
-                            <div>
-                                    <Link to="/createProd">Create Product</Link>
-                            </div>
-                        </div>)
-                    }
-                }</Query>
-            </div> //End
+                                    </>)
+                                }
+
+                                //User is logged in
+                                return (
+                                    <>
+                                    <li className="nav-item">
+                                        <Link to="/account" className="nav-link" style={btnStyle} >Account</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/createProd" className="nav-link" style={btnStyle} >Create Product</Link>
+                                    </li>
+
+                                </>)
+                            }
+                            }
+                        </Query>
+                    </ul>
+                </nav>
+            </div>
         )
     }
 }

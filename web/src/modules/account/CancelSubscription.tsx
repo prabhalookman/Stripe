@@ -21,7 +21,7 @@ export class CancelSubscription extends React.PureComponent {
         mutation={cancelSubscriptionMutation}
       >
         {mutate => (
-          <button onClick={() => mutate()} >cancel subscription</button>
+          <button className="btn btn-danger" onClick={() => mutate()} >cancel subscription</button>
         )}
       </Mutation>
     );

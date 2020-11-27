@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
+import '../node_modules//bootstrap/dist/css/bootstrap.css'
+
 
 import { Routes } from "./Routes";
 
