@@ -268,3 +268,10 @@ npm install --save stripe@^6.12.1
 -------------------------
 yarn add styled-components@beta
 yarn add -D @types/styled-components
+
+-------------------
+[stripe-samples / checkout-one-time-payments ](https://github.com/stripe-samples/checkout-one-time-payments/tree/master/server/node)
+[Stripe Samples](https://github.com/stripe-samples)
+[Stripe Checkout](https://stripe.com/docs/payments/checkout)
+[SetupIntents](https://stripe.com/docs/api/setup_intents)
+[typescript-react-stripe](https://github.com/stripe-samples/nextjs-typescript-react-stripe-js/tree/4ecd56f3a9541d4a99b70b944f3eee834d19fbfa)

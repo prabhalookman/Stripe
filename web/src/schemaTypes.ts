@@ -72,6 +72,23 @@ export interface ChangeCreditCardMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateProductMutation
+// ====================================================
+
+export interface CreateProductMutation {
+  createProduct: string | null;
+}
+
+export interface CreateProductMutationVariables {
+  email: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: CreateSubscriptionMutation
 // ====================================================
 

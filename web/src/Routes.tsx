@@ -7,6 +7,7 @@ import SubscribeUser from './modules/account/SubscribeUser';
 import { PaidUsers } from './modules/account/PaidUsers';
 import Header from './shared/Header';
 import CreateProduct from './modules/account/CreateProduct';
+import CreatePrice from './modules/account/CreatePrice';
 
 export class Routes extends React.PureComponent {
   render() {
@@ -25,7 +26,8 @@ export class Routes extends React.PureComponent {
                   <Route path="/account" component={Account} />
                   <Route path="/SubscribeUser" component={SubscribeUser} />
                   <Route path="/paid-users" component={PaidUsers} />
-                  <Route path="/createProd" component={CreateProduct} />                  
+                  <Route path="/createProd" component={CreateProduct} />
+                  <Route path="/createPrice" component={CreatePrice} />
                   <Route exact={true} path="/" render={() => <div style={{ textAlign: "center", fontSize: "24px", fontWeight:"bold" }}>Welcome To Stripe Payment</div>} />
                 </div>
               </React.Fragment>)}

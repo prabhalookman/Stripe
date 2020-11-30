@@ -139,6 +139,42 @@ export const resolvers: IResolvers = {
             await user.save();
 
             return user;
+        },createProduct: async(_, {email}, {req}) => {
+
+            console.log("Create Product");
+            if (!req.session || !req.session.userId) {
+                throw new Error("not authenticated");
+            }
+
+            console.log("req.session.userId : ", req.session.userId)
+
+            const session1 = await stripe.checkout.sessions.retrieve('ram25@gmail.com');
+            console.log('session1 : ', session1);
+            
+            const YOUR_DOMAIN = 'http://localhost:3000/';
+            console.log(email)
+
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items: [
+                  {
+                    currency: 'usd',
+                    name: 'Stubborn Attachments',
+                    images: ['https://i.imgur.com/EHyR2nP.png'],
+                    amount: 2000,
+                    quantity: 1,
+                  },
+                ],
+                mode: 'payment',
+                success_url: `${YOUR_DOMAIN}?success=true`,
+                cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+              });
+              console.log ( " session.id : ", session.id);
+
+              //res.json({ id: session.id });
+              //https://dashboard.stripe.com/b/acct_1HewRQDHIfzRDTEX
+
+            return session.id
         }
     
     }

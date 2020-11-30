@@ -58,6 +58,9 @@ export default class Header extends PureComponent {
                                     <li className="nav-item">
                                         <Link to="/createProd" className="nav-link" style={btnStyle} >Create Product</Link>
                                     </li>
+                                    <li className="nav-item">
+                                        <Link to="/createPrice" className="nav-link" style={btnStyle} >Create Price</Link>
+                                    </li>
 
                                 </>)
                             }
