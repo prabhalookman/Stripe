@@ -60,3 +60,30 @@ Subscription Reply :
   "used": false
 }
 ----------------------------
+query{
+  customerList{
+    id
+    email
+    currency
+    invoice_prefix
+  }
+  }
+----------
+{
+  "data": {
+    "customerList": [
+      {
+        "id": "cus_ISz1e19MUtMjHn",
+        "email": "mohan25@gmail.com",
+        "currency": "inr",
+        "invoice_prefix": "F93349B0"
+      },
+      {
+        "id": "cus_IRsHTU9bri4d8Q",
+        "email": "ram25@gmail.com",
+        "currency": "inr",
+        "invoice_prefix": "BD9736BB"
+      }
+    ]
+  }
+}

@@ -8,9 +8,24 @@ type User {
     ccLast4: String
 }
 
+type Customer{
+    id:String,
+    email: String,
+    currency: String,
+    invoice_prefix: String,
+    name: String,    
+    description: String
+}
+
+input CustomerInput {
+    email: String!,
+    name: String
+}
+
 type Query {
     hello: String!,
-    me: User
+    me: User,
+    customerList:[Customer]
 }
 
 type Mutation {
@@ -19,6 +34,8 @@ type Mutation {
     createSubscription(source: String!, ccLast4: String): User
     changeCreditCard(source: String!, ccLast4: String): User
     cancelSubscription: User,
-    createProduct(email:String):String
+    createProduct(email:String):String,
+    createCustomer(customer:CustomerInput): Customer
+    
 }`
 //createSubscription all i really need to take is that token ID or what stripe calls it is the "source"

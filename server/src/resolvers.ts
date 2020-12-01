@@ -14,7 +14,22 @@ export const resolvers: IResolvers = {
                 return null;
             }
             return MyUser.findOne(req.session.userId)
-        }
+        },
+        customerList: async(_, __, {req}) => {
+          
+          if (!req.session || !req.session.userId) {
+              throw new Error("not authenticated");
+          }
+
+          const customers = await stripe.customers.list({
+            limit: 5,
+          });
+
+          let arryCust = customers.data.map((e)=> {return {id: e.id, email: e.email, currency: e.currency, invoice_prefix: e.invoice_prefix} })
+          
+          return arryCust
+
+        }  
 
     },
     Mutation: {
@@ -146,8 +161,6 @@ export const resolvers: IResolvers = {
                 throw new Error("not authenticated");
             }
 
-            console.log("req.session.userId : ", req.session.userId)
-
             const session1 = await stripe.checkout.sessions.retrieve('ram25@gmail.com');
             console.log('session1 : ', session1);
             
@@ -175,6 +188,28 @@ export const resolvers: IResolvers = {
               //https://dashboard.stripe.com/b/acct_1HewRQDHIfzRDTEX
 
             return session.id
+        },createCustomer: async(_, {customer }, {req}) => {
+
+            if (!req.session || !req.session.userId) {
+                throw new Error("not authenticated");
+            }
+            try {
+              const cst = await stripe.customers.create({              
+                name: customer.name,
+                email: customer.email,
+                description: 'My First Test Customer (created for API docs)',
+              });
+
+              return {
+                name: cst.name,
+                email: cst.email,
+                description: cst.description  
+              }
+              
+            } catch (error) {
+              console.log("error : ", error)
+              throw new Error("Error");
+            }            
         }
     
     }

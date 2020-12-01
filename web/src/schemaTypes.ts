@@ -115,6 +115,27 @@ export interface CreateSubscriptionMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: customerLS
+// ====================================================
+
+export interface customerLS_customerList {
+  __typename: "Customer";
+  id: string;
+  email: string;
+  currency: string;
+  invoice_prefix: string;
+}
+
+export interface customerLS {
+  customerList: (customerLS_customerList | null)[] | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: LoginMutation
 // ====================================================
 
