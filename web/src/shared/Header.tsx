@@ -53,7 +53,7 @@ export default class Header extends PureComponent {
                                 return (
                                     <>
                                     <li className="nav-item">
-                                        <Link to="/account" className="nav-link" style={btnStyle} >Account</Link>
+                                        <Link to="/account" className="nav-link" style={btnStyle} >Subscripe</Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/createCustomer" className="nav-link" style={btnStyle} >Create Customer</Link>
@@ -64,10 +64,6 @@ export default class Header extends PureComponent {
                                     <li className="nav-item">
                                         <Link to="/createPrice" className="nav-link" style={btnStyle} >Create Price</Link>
                                     </li>
-                                    <li className="nav-item">
-                                        <Link to="/customerList" className="nav-link" style={btnStyle} >Customer List</Link>
-                                    </li>                                    
-
                                 </>)
                             }
                             }

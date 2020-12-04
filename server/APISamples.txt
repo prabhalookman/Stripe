@@ -87,3 +87,26 @@ query{
     ]
   }
 }
+
+------------------
+Create Product : 
+Product :  {
+  id: 'prod_IUv4SmUTl2rPj4',
+  object: 'product',
+  object: 'product',
+  active: true,
+  attributes: [],
+  caption: null,
+  created: 1606915101,
+  deactivate_on: [],
+  description: null,
+  images: [],
+  livemode: false,
+  metadata: {},
+  name: 'HMIS',
+  package_dimensions: null,
+  shippable: true,
+  type: 'good',
+  updated: 1606915101,
+  url: null
+}

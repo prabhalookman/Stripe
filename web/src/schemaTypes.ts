@@ -115,15 +115,39 @@ export interface CreateSubscriptionMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateCustomerMutation
+// ====================================================
+
+export interface CreateCustomerMutation_createCustomer {
+  __typename: "Customer";
+  name: string | null;
+}
+
+export interface CreateCustomerMutation {
+  createCustomer: CreateCustomerMutation_createCustomer | null;
+}
+
+export interface CreateCustomerMutationVariables {
+  email?: string | null;
+  username?: string | null;
+  description?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: customerLS
 // ====================================================
 
 export interface customerLS_customerList {
   __typename: "Customer";
-  id: string;
-  email: string;
-  currency: string;
-  invoice_prefix: string;
+  id: string | null;
+  email: string | null;
+  currency: string | null;
+  invoice_prefix: string | null;
 }
 
 export interface customerLS {

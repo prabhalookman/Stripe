@@ -5,7 +5,7 @@ import { Mutation } from "react-apollo";
 import { userFragment } from "../../graphql/fragments/userFragment";
 import { CancelSubscriptionMutation } from "../../schemaTypes";
 
-const cancelSubscriptionMutation = gql`
+const cancelSubscriptionMutDef = gql`
   mutation CancelSubscriptionMutation {
     cancelSubscription {
       ...UserInfo
@@ -18,7 +18,7 @@ export class CancelSubscription extends React.PureComponent {
   render() {
     return (
       <Mutation<CancelSubscriptionMutation>
-        mutation={cancelSubscriptionMutation}
+        mutation={cancelSubscriptionMutDef}
       >
         {mutate => (
           <button className="btn btn-danger" onClick={() => mutate()} >cancel subscription</button>

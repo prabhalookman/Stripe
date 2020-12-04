@@ -156,49 +156,55 @@ export const resolvers: IResolvers = {
             return user;
         },createProduct: async(_, {email}, {req}) => {
 
-            console.log("Create Product");
+            console.log("Create Product ", email);
             if (!req.session || !req.session.userId) {
                 throw new Error("not authenticated");
             }
+            const product = await stripe.products.create({type:'good',name:"HMIS" });
 
-            const session1 = await stripe.checkout.sessions.retrieve('ram25@gmail.com');
-            console.log('session1 : ', session1);
+            console.log('Product : ', product)
+
+            // const session1 = await stripe.checkout.sessions.retrieve('ram25@gmail.com');
+            // console.log('session1 : ', session1);
             
-            const YOUR_DOMAIN = 'http://localhost:3000/';
-            console.log(email)
+            // const YOUR_DOMAIN = 'http://localhost:3000/';
+            // console.log(email)
 
-            const session = await stripe.checkout.sessions.create({
-                payment_method_types: ['card'],
-                line_items: [
-                  {
-                    currency: 'usd',
-                    name: 'Stubborn Attachments',
-                    images: ['https://i.imgur.com/EHyR2nP.png'],
-                    amount: 2000,
-                    quantity: 1,
-                  },
-                ],
-                mode: 'payment',
-                success_url: `${YOUR_DOMAIN}?success=true`,
-                cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-              });
-              console.log ( " session.id : ", session.id);
+            // const session = await stripe.checkout.sessions.create({
+            //     payment_method_types: ['card'],
+            //     line_items: [
+            //       {
+            //         currency: 'usd',
+            //         name: 'Stubborn Attachments',
+            //         images: ['https://i.imgur.com/EHyR2nP.png'],
+            //         amount: 2000,
+            //         quantity: 1,
+            //       },
+            //     ],
+            //     mode: 'payment',
+            //     success_url: `${YOUR_DOMAIN}?success=true`,
+            //     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+            //   });
+            //   console.log ( " session.id : ", session.id);
 
               //res.json({ id: session.id });
               //https://dashboard.stripe.com/b/acct_1HewRQDHIfzRDTEX
 
-            return session.id
-        },createCustomer: async(_, {customer }, {req}) => {
+            return product
+        },createCustomer: async(_, {email,name,description }, {req}) => {
 
             if (!req.session || !req.session.userId) {
                 throw new Error("not authenticated");
-            }
+            }            
+
             try {
-              const cst = await stripe.customers.create({              
-                name: customer.name,
-                email: customer.email,
-                description: 'My First Test Customer (created for API docs)',
+              const cst = await stripe.customers.create({
+                name: name,
+                email: email,
+                description: description,
               });
+
+              console.log(' cst : ', cst)
 
               return {
                 name: cst.name,

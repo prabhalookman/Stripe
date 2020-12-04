@@ -56,6 +56,7 @@ Set up a payments for latter :
 https://stripe.com/docs/payments/save-and-reuse
 
 
+
 BILLING : 
 ---------
 
@@ -107,3 +108,32 @@ https://github.com/stripe-samples/checkout-one-time-payments
 
 IONIC: 
 https://www.onetruecode.com/stripe-checkout-ionic-3-example/
+
+
+
+How to handle forms with just React
+https://medium.com/@everdimension/how-to-handle-forms-with-just-react-ac066c48bd4f
+
+Payment Terminology for Product Teams
+https://www.departmentofproduct.com/blog/how-online-payments-work/
+
+Controlled Forms in React
+https://medium.com/byte-sized-react/controlled-forms-in-react-68e59362a119
+
+Building forms using React — everything you need to know
+https://www.codementor.io/@blizzerand/building-forms-using-react-everything-you-need-to-know-iz3eyoq4y
+
+Stateful vs. Stateless Functional Components in React
+https://code.tutsplus.com/tutorials/stateful-vs-stateless-functional-components-in-react--cms-29541
+
+Introduction to Forms in Angular 4: Reactive Forms
+https://code.tutsplus.com/tutorials/introduction-to-forms-in-angular-4-reactive-forms--cms-29787
+
+Properly typing Apollo Mutation render prop for onClick handler
+https://stackoverflow.com/questions/53702877/properly-typing-apollo-mutation-render-prop-for-onclick-handler
+
+Typescript input onchange event.target.value
+https://stackoverflow.com/questions/40676343/typescript-input-onchange-event-target-value
+
+Typescript React.Js File Upload Event Ts2322 Error
+https://stackoverflow.com/questions/50641491/typescript-react-js-file-upload-event-ts2322-error
