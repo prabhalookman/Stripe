@@ -34,7 +34,7 @@ export default class CustomerList extends PureComponent {
 
                                 return <div>
                                     <ul>
-                                        {data.customerList?.map(key => (<li>{key?.email} - {key?.id}</li>))}
+                                        {data.customerList?.map(key => (<li key={key?.id}>{key?.email} - {key?.id}</li>))}
                                     </ul>
                                 </div>
 

@@ -268,7 +268,30 @@ npm install --save stripe@^6.12.1
 -------------------------
 yarn add styled-components@beta
 yarn add -D @types/styled-components
+---------------
 
+## Server Error : 
+When we call the stripe api for example (stripe.prices.list({})), we were getting error the definition not available . 
+
+# Solution : 
+so we inspect the packages about @type/stripe & @type/stripe-node. 
+
+Within the "node_modules/@types" we try to find the stripe d.ts definition file. but the had only the Readme file inside the stripe folder and it mentioned as shown below.
+
+This is a stub types definition for @types/stripe (https://github.com/stripe/stripe-node).
+stripe provides its own type definitions, so you don't need @types/stripe installed!
+
+It means no need the @types/stripe package. So we removed both the "@type/stripe & @type/stripe-node". then the api price call issue resolved .
+--------------------
+import * as Stripe from 'stripe';
+export const stripe = new Stripe(process.env.STRIPE_SCECRET!);
+
+## Server Error : 
+This expression is not constructable. Type 'typeof import("stripe")' has no construct signatures.
+
+
+
+npm outdated
 -------------------
 [stripe-samples / checkout-one-time-payments ](https://github.com/stripe-samples/checkout-one-time-payments/tree/master/server/node)
 [Stripe Samples](https://github.com/stripe-samples)

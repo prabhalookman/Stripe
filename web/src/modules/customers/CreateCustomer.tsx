@@ -43,7 +43,7 @@ export default class CreateCustomer extends PureComponent<{}, CustomerState> {
         ...prevState,
         [name]: updatedValue,
       }),
-      () => { },
+      () => { }
     )
 
     // fetch('/api/form-submit-url', {
@@ -56,7 +56,7 @@ export default class CreateCustomer extends PureComponent<{}, CustomerState> {
     return (
       <div>
         <form >
-          <h2>Create Customer - {this.state.username} </h2>
+          <h2>Create Customer {this.state.username} </h2>
           <div>
             <div className="form-group">
               <label htmlFor="username">Enter username</label>
@@ -77,21 +77,23 @@ export default class CreateCustomer extends PureComponent<{}, CustomerState> {
         </form>
         <Mutation<CreateCustomerMutation, CreateCustomerMutationVariables> mutation={createCustomerMutDef} onCompleted={() => alert('success')} >
           {(onMutate) => {
-            
-            const onMutateFunc = async () =>  {
-              const result =   await onMutate(
+
+            const onMutateFunc = async () => {
+              const result = await onMutate(
                 { variables: { email: this.state.email, username: this.state.username, description: this.state.description } }
               )
+              console.log('Create Customer Client Result ', result);
+
             } //onMutateFunc End
 
-            return ( <button onClick={onMutateFunc} className="btn btn-danger">Submit</button> ) 
+            return (<button onClick={onMutateFunc} className="btn btn-danger">Submit</button>)
           } // onMutate End
           }
         </Mutation>
 
-        <br/><hr/><br/>
+        <br /><hr /><br />
 
-        <CustomerList/>
+        <CustomerList />
       </div>
     )
   }

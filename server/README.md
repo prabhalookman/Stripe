@@ -31,3 +31,8 @@ createConnection().then(async connection => {
 
 }).catch(error => console.log(error));
 */
+
+Versions :
+
+https://developer.aliyun.com/mirror/npm/package/@types/stripe
+https://www.npmjs.com/package/@types/stripe?activeTab=dependencies

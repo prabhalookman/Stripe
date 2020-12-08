@@ -72,23 +72,6 @@ export interface ChangeCreditCardMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: CreateProductMutation
-// ====================================================
-
-export interface CreateProductMutation {
-  createProduct: string | null;
-}
-
-export interface CreateProductMutationVariables {
-  email: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: CreateSubscriptionMutation
 // ====================================================
 
@@ -121,6 +104,8 @@ export interface CreateSubscriptionMutationVariables {
 export interface CreateCustomerMutation_createCustomer {
   __typename: "Customer";
   name: string | null;
+  email: string | null;
+  description: string | null;
 }
 
 export interface CreateCustomerMutation {
@@ -152,6 +137,77 @@ export interface customerLS_customerList {
 
 export interface customerLS {
   customerList: (customerLS_customerList | null)[] | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: priceLs
+// ====================================================
+
+export interface priceLs_priceList_recurring {
+  __typename: "Recurring";
+  interval: string | null;
+}
+
+export interface priceLs_priceList {
+  __typename: "Price";
+  id: string | null;
+  currency: string | null;
+  product: string | null;
+  recurring: priceLs_priceList_recurring | null;
+}
+
+export interface priceLs {
+  priceList: (priceLs_priceList | null)[] | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: CreateProductMutation
+// ====================================================
+
+export interface CreateProductMutation_createProduct {
+  __typename: "Product";
+  id: string | null;
+  name: string | null;
+  description: string | null;
+}
+
+export interface CreateProductMutation {
+  createProduct: CreateProductMutation_createProduct | null;
+}
+
+export interface CreateProductMutationVariables {
+  name?: string | null;
+  description?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: productLs
+// ====================================================
+
+export interface productLs_productList {
+  __typename: "Product";
+  id: string | null;
+  name: string | null;
+  description: string | null;
+}
+
+export interface productLs {
+  productList: (productLs_productList | null)[] | null;
 }
 
 /* tslint:disable */

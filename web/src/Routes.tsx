@@ -6,10 +6,11 @@ import { Account } from './modules/account/Account';
 import SubscribeUser from './modules/account/SubscribeUser';
 import { PaidUsers } from './modules/account/PaidUsers';
 import Header from './shared/Header';
-import CreateProduct from './modules/account/CreateProduct';
-import CreatePrice from './modules/account/CreatePrice';
+import CreateProduct from './modules/product/CreateProduct';
 import CustomerList from './modules/customers/CustomerList';
 import CreateCustomer from './modules/customers/CreateCustomer';
+import ProductList from './modules/product/ProductList';
+import CreatePrice from './modules/price/CreatePrice';
 
 export class Routes extends React.PureComponent {
   render() {
@@ -32,6 +33,7 @@ export class Routes extends React.PureComponent {
                   <Route path="/createPrice" component={CreatePrice} />
                   <Route path="/customerList" component={CustomerList} />
                   <Route path="/createCustomer" component={CreateCustomer} />
+                  <Route path="/prodList" component={ProductList} />
                   <Route exact={true} path="/" render={() => <div style={{ textAlign: "center", fontSize: "24px", fontWeight:"bold" }}>Welcome To Stripe Payment</div>} />
                 </div>
               </React.Fragment>)}
