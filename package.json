@@ -1,0 +1,25 @@
+{
+  "name": "Stripe",
+  "version": "1.0.0",
+  "description": "Stripe Integration using Typescript, React, Nodejs",
+  "main": "index.js",  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prabhalookman/Stripe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prabhalookman/Stripe/issues"
+  },
+  "homepage": "https://github.com/prabhalookman/Stripe#readme",
+  "scripts": {
+    "server-dev":"npm start --prefix server",
+    "client-dev":"npm start --prefix web",
+    "start-dev":"concurrently \"npm run server-dev\" \"npm run client-dev\" "
+  },
+  "devDependencies": {    
+    "concurrently": "^5.3.0"
+  }
+}
