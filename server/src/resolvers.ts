@@ -1,7 +1,9 @@
 import { IResolvers } from "graphql-tools";
 import * as bcrypt from 'bcryptjs';
 import { MyUser } from "./entity/MyUser";
-const stripe = require('stripe')(process.env.STRIPE_SCECRET);
+import Stripe from 'stripe';
+const stripe = new Stripe(process.env.STRIPE_SCECRET!, {apiVersion: '2020-08-27', });
+//const stripe = require('stripe')(process.env.STRIPE_SCECRET);
 
 export const resolvers: IResolvers = {
   Query: {
@@ -52,9 +54,7 @@ export const resolvers: IResolvers = {
 
       const subscriptions = await stripe.subscriptions.list({
         limit: 3,
-      });
-
-      console.log('subscriptions : ', subscriptions);
+      });      
 
       let arrsubscriptions = subscriptions.data.map((e:any) => { return { id: e.id } })
 
@@ -73,7 +73,6 @@ export const resolvers: IResolvers = {
         limit: 3,
       });
 
-      console.log('prices : ', JSON.stringify(prices));
       let rec:any = {};
 
       let arrsubscriptions = prices.data.map((e:any) => {
@@ -90,8 +89,6 @@ export const resolvers: IResolvers = {
           recurring: e.recurring? rec : null
         }
     })
-    console.log('arrsubscriptions : ', arrsubscriptions);
-
     return arrsubscriptions
 
     }
@@ -104,7 +101,7 @@ export const resolvers: IResolvers = {
         email,
         password: hashedPassword
       }).save();
-      console.log('Success : ', result)
+      console.log('Register Success : ', result)
 
       return true;
     },
@@ -125,7 +122,6 @@ export const resolvers: IResolvers = {
 
       //When i set the user ID right here a request session or express-session knows to add a cookie to the user. 
       //So now a cookie gonna get sent whenever we do login .
-      console.log("user Info : ", user);
 
       return user;
     }, createSubscription: async (_, { source, ccLast4 }, { req }) => {
@@ -143,22 +139,21 @@ export const resolvers: IResolvers = {
 
       if (!stripeId) {
         const customer = await stripe.customers.create({
+          description: "New Customer "  + user.email,
           email: user.email,
-          source,
-          price: process.env.PLAN
         });
         stripeId = customer.id;
       } else {
         // update customer
+        // @ts-ignore
         const cust = await stripe.customers.update(stripeId, { source });
-        console.log('cust : ', cust)
+        // @ts-ignore
         const subs = await stripe.subscriptions.create({
           customer: stripeId,
           items: [
             { price: process.env.PLAN! }
           ]
         });
-        console.log('subs : ', subs)
       }
 
       user.stripeId = stripeId;
@@ -187,7 +182,6 @@ export const resolvers: IResolvers = {
       return user;
 
     }, cancelSubscription: async (_, __, { req }) => {
-      console.log("From Cancel  ");
       if (!req.session || !req.session.userId) {
         throw new Error("not authenticated");
       }
@@ -198,22 +192,16 @@ export const resolvers: IResolvers = {
         throw new Error();
       }
 
+      // @ts-ignore
       const stripeCustomer = await stripe.customers.retrieve(user.stripeId);
-      console.log("Cancel : stripeCustomer - ", stripeCustomer)
 
       const subscriptions = await stripe.subscriptions.list({ limit: 3 });
 
-      console.log("subscriptions List : ", subscriptions)
-
       const [subscription] = subscriptions.data;
       await stripe.subscriptions.del(subscription.id);
-
-      const result = await stripe.customers.deleteCard(
-        user.stripeId,
-        stripeCustomer.default_source as string
-      );
-
-      console.log("result : ", result)
+      
+      // @ts-ignore
+      //const result = await stripe.customers.deleteCard();
 
       user.type = "free-trail";
       await user.save();
@@ -221,14 +209,11 @@ export const resolvers: IResolvers = {
       return user;
     }, createProduct: async (_, { product }, { req }) => {
 
-      console.log("Create Product ", product);
       try {
         if (!req.session || !req.session.userId) {
           throw new Error("not authenticated");
         }
         const result = await stripe.products.create({ type: 'good', name: product.name });
-
-        console.log('Create Product Result : ', result)
 
         return {
           id: result.id,
@@ -237,7 +222,6 @@ export const resolvers: IResolvers = {
         }
 
       } catch (error) {
-        console.log("Create Product error : ", error)
         throw new Error("Error");
       }
 
@@ -281,8 +265,6 @@ export const resolvers: IResolvers = {
           description: description,
         });
 
-        console.log(' cst : ', cst)
-
         return {
           name: cst.name,
           email: cst.email,
@@ -290,7 +272,6 @@ export const resolvers: IResolvers = {
         }
 
       } catch (error) {
-        console.log("error : ", error)
         throw new Error("Error");
       }
     }

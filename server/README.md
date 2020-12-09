@@ -36,3 +36,34 @@ Versions :
 
 https://developer.aliyun.com/mirror/npm/package/@types/stripe
 https://www.npmjs.com/package/@types/stripe?activeTab=dependencies
+
+----------
+Nodemon Sample : 
+{
+    "restartable": "rs",
+    "ignore": [".git", "node_modules/**/node_modules"],
+    "verbose": true,
+    "execMap": {
+      "ts": "node --require ts-node/register"
+    },
+    "watch": ["src/"],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "js,json,ts"
+  }
+  -------------
+  # Debug : 
+  https://github.com/TypeStrong/ts-node/issues/537
+  https://stackoverflow.com/questions/49042830/why-does-the-node-inspector-not-start-when-i-am-using-nodemon-and-ts-node
+
+  # Typescript Debug : 
+
+  How to debug TypeScript with VS Code
+  https://medium.com/@PhilippKief/how-to-debug-typescript-with-vs-code-9cec93b4ae56
+
+  nodejs-with-typescript-debug-inside-vscode-and-nodemon
+  https://dev.to/oieduardorabelo/nodejs-with-typescript-debug-inside-vscode-and-nodemon-23o7
+
+  debug-typescript-in-vs-code-without-compiling-using-ts-node-
+  https://medium.com/@dupski/debug-typescript-in-vs-code-without-compiling-using-ts-node-9d1f4f9a94a

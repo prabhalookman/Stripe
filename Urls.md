@@ -1,5 +1,15 @@
+
 API
 ===
+API Reference
+https://stripe.com/docs/api
+
+stripe-samples
+https://github.com/stripe-samples
+
+API libraries
+https://stripe.com/docs/libraries
+
 Create a Customer API :
 https://stripe.com/docs/api/customers/create
 
@@ -18,12 +28,12 @@ https://stripe.com/docs/api/subscriptions/list
 Create a Subscription API : 
 https://stripe.com/docs/api/subscriptions/create
 
-API Reference
-https://stripe.com/docs/api
-
 
 Docs
 =====
+Development quickstart
+https://stripe.com/docs/development/quickstart
+
 How subscriptions work Docs  : 
 https://stripe.com/docs/billing/subscriptions/overview
 
@@ -47,7 +57,7 @@ PAYMENTS :
 ----------
 
 Accept a Payments : 
-https://stripe.com/docs/checkout/integration-builder
+https://stripe.com/docs/checkout/integration-builder (Prebuilt Checkout page, Custom payment flow - React, Node )
 
 Save a Card During Payments : 
 https://stripe.com/docs/payments/save-during-payment

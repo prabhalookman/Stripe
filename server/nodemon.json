@@ -1,0 +1,25 @@
+{
+	"verbose": true,
+    "debug": false,    
+	"ignore": [
+		"mochawesome-report",
+		"node_modules",
+		"./test",
+		"**/*.d.ts",
+		"*.test.ts",
+		"*.spec.ts",
+		"fixtures/*",
+		"test/**/*",
+		"docs/*"
+	],
+	"events": {
+		"restart": "echo \"[Warning] Remember run npm run test b4 push to dev branch !\""
+    },    
+	"exec": "node --inspect -r ts-node/register ./src/index.ts",
+	"watch": ["./src"],
+    "ext": "ts, gql",
+    "env": {
+        "NODE_ENV": "development"
+    },
+	"inspect": true
+}
