@@ -8,6 +8,7 @@
     "apollo-boost": "^0.4.9",
     "apollo-client": "^2.6.10",
     "apollo-language-server": "^1.24.1",
+    "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "graphql": "^15.4.0",
     "nodemon": "^2.0.6",

@@ -145,6 +145,25 @@ export interface customerLS {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: productLS
+// ====================================================
+
+export interface productLS_productList {
+  __typename: "Product";
+  id: string | null;
+  description: string | null;
+}
+
+export interface productLS {
+  productList: (productLS_productList | null)[] | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: priceLs
 // ====================================================
 

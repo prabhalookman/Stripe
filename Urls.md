@@ -1,4 +1,3 @@
-
 API
 ===
 API Reference
@@ -31,6 +30,9 @@ https://stripe.com/docs/api/subscriptions/create
 
 Docs
 =====
+Payment methods
+https://stripe.com/en-in/payments/payment-methods-guide#payment-methods-fact-sheets
+
 Development quickstart
 https://stripe.com/docs/development/quickstart
 
@@ -147,3 +149,7 @@ https://stackoverflow.com/questions/40676343/typescript-input-onchange-event-tar
 
 Typescript React.Js File Upload Event Ts2322 Error
 https://stackoverflow.com/questions/50641491/typescript-react-js-file-upload-event-ts2322-error
+
+@types/react cannot setState with dynamic key name type-safe 
+https://github.com/DefinitelyTyped/DefinitelyTyped/issues/26635
+https://www.gitmemory.com/issue/DefinitelyTyped/DefinitelyTyped/26635/646322548
