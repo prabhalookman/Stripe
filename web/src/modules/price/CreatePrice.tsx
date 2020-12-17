@@ -3,15 +3,19 @@ import PriceList from './PriceList'
 import { gql } from 'apollo-boost';
 import { Query, graphql } from "react-apollo";
 import { meQuery, productLs } from "../../schemaTypes";
+import InputField from '../../library/components/InputField/index'
+import { Validators } from '../../library/utilities/Validators';
 
 type IPriceState = {
     description?: string,
-    prod?: IProductProps | null
+    prod?: IProductProps | null,
+    text: string    
 }
 
 type IProductProps = {
     prodname?: string,
-    description?: string
+    description?: string,
+    id?:string
 }
 
 type StateKeys = keyof IPriceState;
@@ -25,18 +29,28 @@ const productQuryVar = gql`
     }  
 `;
 
-class CreatePrice<IProductProps > extends PureComponent<IProductProps, IPriceState> {
+type  inputState  = {
+    value: string,
+    label: string,
+    placeholder: string,
+    validators: [],
+    type: string,
+    onChange: (a:React.FormEvent<HTMLInputElement>) => void
+}
+
+class CreatePrice extends PureComponent<{}, IPriceState, {}> {
     state: IPriceState = {
         description: "",
-        prod:{prodname:"",description:""}
+        prod:{prodname:"",description:""},
+        text:''
     };
 
     constructor(props) {
         super(props)
-        this.state = { description: "", prod: {} }
+        this.state = { description: "", prod: {}, text:'' }
         this.handleChange = this.handleChange.bind(this)
-        var data = this.props.children;
-        console.log(' data : ' , data);
+        //var data = this.props.data;
+        //console.log(' data : ' , data);
     }
     updateState(key: StateKeys, value: string) {
         if(key === 'description'){
@@ -57,23 +71,51 @@ class CreatePrice<IProductProps > extends PureComponent<IProductProps, IPriceSta
     //     this.setState({ [key]: value } as Pick<IPriceState, K>); // clean cast works   
     // }
 
-    handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        const name: any = e.currentTarget.name
-        const updatedValue = e.currentTarget.value
-        //this.dynSetState(name, updatedValue);
-        this.updateState(name, updatedValue);
-    }
+    // handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    //     e.preventDefault() as any;
+    //     const name: any = e.currentTarget.name
+    //     const updatedValue = e.currentTarget.value
+    //     //this.dynSetState(name, updatedValue);
+    //     this.updateState(name, updatedValue);
+    // }
+
+    handleChange = (key) => (value) => {
+        this.setState(
+            prevState => ({
+              ...prevState,
+              text: value,
+            }),
+            () => { }
+          )
+        
+        // this.setState((prevState) => ({
+        //     ...prevState,
+        //     key: value                
+        // }));
+
+        console.log('this.state : ', this.state);
+    };
 
     render() {
-        
+        const {text} = this.state
         return (<div>
             hi  <span>{JSON.stringify(this.props.children)};</span>
             <form>
                 <h2>Create Price {this.state.description}</h2>
                 <div className="form-group">
-                    <label htmlFor="username">Enter price description</label>
-                    <input id="description" name="description" type="text" value={this.state.description} onChange={this.handleChange} className="form-control" />
+                    {/* <label htmlFor="username">Enter price description</label>
+                    <input id="description" name="description" type="text" value={this.state.description} onChange={this.handleChange} className="form-control" /> */}
+                    <InputField
+                        type='text'
+                        value={text}
+                        placeholder='Enter text here...'
+                        validators = {[{
+                            check: Validators.required,
+                            message: 'This field is required'
+                        }]
+                    }
+                    onChange={this.handleChange('text' as any) as any} 
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="username">Enter price name</label> - {this.state.prod?.prodname}

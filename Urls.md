@@ -153,3 +153,9 @@ https://stackoverflow.com/questions/50641491/typescript-react-js-file-upload-eve
 @types/react cannot setState with dynamic key name type-safe 
 https://github.com/DefinitelyTyped/DefinitelyTyped/issues/26635
 https://www.gitmemory.com/issue/DefinitelyTyped/DefinitelyTyped/26635/646322548
+
+using-react-components-with-apollo-client-and-typescript
+https://stackoverflow.com/questions/48441340/using-react-components-with-apollo-client-and-typescript/51385131
+
+https://www.dslemay.com/blog/2020/04/27/typescript-utility-types-part-1-partial-pick-and-omit
+https://www.typescriptlang.org/docs/handbook/utility-types.html
